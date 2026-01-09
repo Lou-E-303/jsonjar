@@ -5,7 +5,7 @@
 
 [![](https://jitpack.io/v/Lou-E-303/jsonjar.svg?refresh=true)](https://jitpack.io/#Lou-E-303/jsonjar)
 
-# Features
+# Usage & Features
 ```java
 JsonParser parser = new JsonParser();
 ```
