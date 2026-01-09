@@ -5,6 +5,8 @@
 
 [![](https://jitpack.io/v/Lou-E-303/jsonjar.svg?refresh=true)](https://jitpack.io/#Lou-E-303/jsonjar)
 
+This JSON parser implementation uses a finite state transition parsing model. It can parse JSON data from both string and file input into hierarchical `Json` objects, and also provides functionality to pretty-print these objects with proper indentation.
+
 # Usage & Features
 ```java
 JsonParser parser = new JsonParser();
