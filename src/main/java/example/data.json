@@ -1,0 +1,10 @@
+{
+  "name": "Alice",
+  "age": 30,
+  "active": true,
+  "scores": [95, 87, 92],
+  "address": {
+    "city": "London",
+    "postcode": "SW1A 1AA"
+  }
+}
