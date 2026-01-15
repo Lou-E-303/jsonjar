@@ -5,8 +5,8 @@ import jsonjar.error_handling.JsonReadException;
 import java.math.BigDecimal;
 import java.util.*;
 
-import static jsonjar.json_objects.JsonReadingErrorConstants.JSON_READING_ERROR_KEY_MISSING;
-import static jsonjar.json_objects.JsonReadingErrorConstants.JSON_READING_ERROR_TYPE_MISMATCH;
+import static jsonjar.json_objects.JsonReadErrorConstants.JSON_READ_ERROR_KEY_MISSING;
+import static jsonjar.json_objects.JsonReadErrorConstants.JSON_READ_ERROR_TYPE_MISMATCH;
 
 public class JsonObject implements Json {
     private final Map<String, Json> values;
@@ -27,7 +27,7 @@ public class JsonObject implements Json {
         Json value = this.values.get(key);
 
         if (value == null) {
-            throw new JsonReadException(JSON_READING_ERROR_KEY_MISSING + key);
+            throw new JsonReadException(JSON_READ_ERROR_KEY_MISSING + key);
         }
 
         return value;
@@ -38,7 +38,7 @@ public class JsonObject implements Json {
             return jsonString;
         }
 
-        throw new JsonReadException(JSON_READING_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonString.");
+        throw new JsonReadException(JSON_READ_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonString.");
     }
 
     public String getAsString(String key) {
@@ -46,7 +46,7 @@ public class JsonObject implements Json {
             return jsonString.getValue();
         }
 
-        throw new JsonReadException(JSON_READING_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a String.");
+        throw new JsonReadException(JSON_READ_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a String.");
     }
 
     public JsonNumber getAsJsonNumber(String key) {
@@ -54,7 +54,7 @@ public class JsonObject implements Json {
             return jsonNumber;
         }
 
-        throw new JsonReadException(JSON_READING_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonNumber.");
+        throw new JsonReadException(JSON_READ_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonNumber.");
     }
 
     public BigDecimal getAsBigDecimal(String key) {
@@ -62,7 +62,7 @@ public class JsonObject implements Json {
             return jsonNumber.getValue();
         }
 
-        throw new JsonReadException(JSON_READING_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a BigDecimal.");
+        throw new JsonReadException(JSON_READ_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a BigDecimal.");
     }
 
     public JsonBoolean getAsJsonBoolean(String key) {
@@ -70,7 +70,7 @@ public class JsonObject implements Json {
             return jsonBoolean;
         }
 
-        throw new JsonReadException(JSON_READING_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonBoolean.");
+        throw new JsonReadException(JSON_READ_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonBoolean.");
     }
 
     public Boolean getAsBoolean(String key) {
@@ -78,7 +78,7 @@ public class JsonObject implements Json {
             return jsonBoolean.getValue();
         }
 
-        throw new JsonReadException(JSON_READING_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a Boolean.");
+        throw new JsonReadException(JSON_READ_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a Boolean.");
     }
 
     public JsonArray getAsJsonArray(String key) {
@@ -86,7 +86,7 @@ public class JsonObject implements Json {
             return jsonArray;
         }
 
-        throw new JsonReadException(JSON_READING_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonArray.");
+        throw new JsonReadException(JSON_READ_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonArray.");
     }
 
     public List<Json> getAsArrayList(String key) {
@@ -94,7 +94,7 @@ public class JsonObject implements Json {
             return jsonArray.getValue();
         }
 
-        throw new JsonReadException(JSON_READING_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonArray.");
+        throw new JsonReadException(JSON_READ_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonArray.");
     }
 
     public JsonObject getAsJsonObject(String key) {
@@ -102,7 +102,7 @@ public class JsonObject implements Json {
             return jsonObject;
         }
 
-        throw new JsonReadException(JSON_READING_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonObject.");
+        throw new JsonReadException(JSON_READ_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonObject.");
     }
 
     public JsonNull getAsJsonNull(String key) {
@@ -110,7 +110,7 @@ public class JsonObject implements Json {
             return jsonNull;
         }
 
-        throw new JsonReadException(JSON_READING_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonNull.");
+        throw new JsonReadException(JSON_READ_ERROR_TYPE_MISMATCH.getMessage() + " Key: " + key + " is not a JsonNull.");
     }
 
     @Override
