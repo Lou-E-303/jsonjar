@@ -22,6 +22,35 @@ Json result = parser.parseFromString(jsonString);
 File jsonFile = new File("data.json");
 Json result = parser.parseFromFile(jsonFile);
 ```
+
+```java
+// Access collections easily
+JsonObject obj = result.asJsonObject();
+JsonArray arr = result.asJsonArray();
+```
+```java
+// Access values easily
+String name = obj.getAsString("name");
+BigDecimal age = obj.getAsBigDecimal("age");
+boolean active = obj.getAsBoolean("active");
+```
+```java
+// Access nested objects
+String city = obj.getAsJsonObject("address").getAsString("city");
+```
+```java
+// Work with arrays
+JsonArray scores = obj.getAsJsonArray("scores");
+for (Json score : scores) {
+    System.out.println(((JsonNumber) score).getValue());
+}
+```
+```java
+// Or access array elements directly
+BigDecimal firstScore = scores.getAsBigDecimal(0);
+BigDecimal secondScore = scores.getAsBigDecimal(1);
+```
+
 ```java
 // Pretty print parsed JSON
 JsonPrettyPrinter printer = new JsonPrettyPrinter();

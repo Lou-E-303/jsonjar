@@ -25,14 +25,16 @@ class ExampleUsage {
                 }
             }
             """;
-        Json result = parser.parseFromString(jsonString);
+        Json stringResult = parser.parseFromString(jsonString);
 
         // Parse JSON from a file
         File jsonFile = new File("src/main/java/example/data.json");
         Json fileResult = parser.parseFromFile(jsonFile);
 
         // Access values easily
-        JsonObject obj = (JsonObject) result;
+        JsonObject obj = stringResult.asJsonObject();
+        JsonArray arr = fileResult.asJsonArray();
+
         String name = obj.getAsString("name");
         BigDecimal age = obj.getAsBigDecimal("age");
         boolean active = obj.getAsBoolean("active");
@@ -52,7 +54,7 @@ class ExampleUsage {
 
         // Pretty print the result
         JsonPrettyPrinter printer = new JsonPrettyPrinter();
-        String formatted = printer.getFormattedJsonString(result, 0);
+        String formatted = printer.getFormattedJsonString(stringResult, 0);
         System.out.println(formatted);
     }
 }
