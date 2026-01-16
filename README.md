@@ -57,19 +57,6 @@ JsonPrettyPrinter printer = new JsonPrettyPrinter();
 String formatted = printer.getFormattedJsonString(result, 0);
 System.out.println(formatted);
 ```
-
-# Interface
-
-## Parsing
-
-- `JsonParser.parseFromString()`: Parses valid JSON `String` objects to hierarchical `Json` objects.
-- `JsonParser.parseFromFile()`: Parses valid JSON `File` objects to hierarchical `Json` objects.
-
-Both will throw an `IOException` in case of string or file read failure, and a `JsonSyntaxException` in case of syntactical issue with JSON input.
-## Pretty-printing
-
-- `JsonPrettyPrinter.getFormattedJsonString()`: Takes a `Json` object and returns a pretty-printed `String` object with proper indentation.
-
 # How it works
 
 - [JsonLexer](https://github.com/Lou-E-303/json-parser/blob/master/src/main/java/jsonparser/lexing_parsing/JsonLexer.java)
