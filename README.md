@@ -43,7 +43,7 @@ String city = obj.getAsJsonObject("address").getAsString("city");
 // Work with arrays
 JsonArray scores = obj.getAsJsonArray("scores");
 for (Json score : scores) {
-    System.out.println(((JsonNumber) score).getValue());
+    System.out.println((score.asJsonNumber()).getValue());
 }
 ```
 ```java
