@@ -6,6 +6,9 @@ plugins {
 group = 'com.github.Lou-E-303'
 version = '1.0.0'
 
+sourceCompatibility = '21'
+targetCompatibility = '21'
+
 repositories {
     mavenCentral()
 }
