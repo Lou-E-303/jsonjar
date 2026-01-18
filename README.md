@@ -8,6 +8,7 @@
 This JSON parser implementation uses a finite state transition parsing model. It can parse JSON data from both string and file input into hierarchical `Json` objects, and also provides functionality to pretty-print these objects with proper indentation.
 
 # Usage & Features
+[Example usage class.](https://github.com/Lou-E-303/jsonjar/blob/master/src/main/java/example/ExampleUsage.java)
 ```java
 JsonParser parser = new JsonParser();
 ```
