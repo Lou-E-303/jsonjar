@@ -45,7 +45,7 @@ class ExampleUsage {
         // Work with arrays
         JsonArray scores = obj.getAsJsonArray("scores");
         for (Json score : scores) {
-            System.out.println(((JsonNumber) score).getValue());
+            System.out.println((score.asJsonNumber()).getValue());
         }
 
         // Or access array elements directly
