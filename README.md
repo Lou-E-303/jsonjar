@@ -25,7 +25,7 @@ Json result = parser.parseFromFile(jsonFile);
 ```
 
 ```java
-// Access collections easily
+// Access structures easily
 JsonObject obj = result.asJsonObject();
 JsonArray arr = result.asJsonArray();
 ```
