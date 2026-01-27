@@ -60,9 +60,9 @@ System.out.println(formatted);
 ```
 # How it works
 
-- [JsonLexer](https://github.com/Lou-E-303/json-parser/blob/master/src/main/java/jsonparser/lexing_parsing/JsonLexer.java)
-- [JsonParser](https://github.com/Lou-E-303/json-parser/blob/master/src/main/java/jsonparser/lexing_parsing/JsonParser.java)
-- [JsonFiniteStateMachine](https://github.com/Lou-E-303/json-parser/blob/master/src/main/java/jsonparser/state_management/JsonFiniteStateMachine.java)
+- [JsonLexer](https://github.com/Lou-E-303/json-parser/blob/master/src/main/java/jsonjar/lexing_parsing/JsonLexer.java)
+- [JsonParser](https://github.com/Lou-E-303/json-parser/blob/master/src/main/java/jsonjar/lexing_parsing/JsonParser.java)
+- [JsonFiniteStateMachine](https://github.com/Lou-E-303/json-parser/blob/master/src/main/java/jsonjar/state_management/JsonFiniteStateMachine.java)
 
 are the three key components to understanding how the parsing works.
 
