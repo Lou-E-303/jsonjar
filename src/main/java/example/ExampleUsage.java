@@ -32,8 +32,8 @@ class ExampleUsage {
         Json fileResult = parser.parseFromFile(jsonFile);
 
         // Access values easily
-        JsonObject obj = stringResult.asJsonObject();
-        JsonArray arr = fileResult.asJsonArray();
+        JsonObject obj = stringResult.toJsonObject();
+        JsonArray arr = fileResult.toJsonArray();
 
         String name = obj.getAsString("name");
         BigDecimal age = obj.getAsBigDecimal("age");
@@ -45,7 +45,7 @@ class ExampleUsage {
         // Work with arrays
         JsonArray scores = obj.getAsJsonArray("scores");
         for (Json score : scores) {
-            System.out.println((score.asJsonNumber()).getValue());
+            System.out.println((score.toJsonNumber()).getValue());
         }
 
         // Or access array elements directly

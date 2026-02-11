@@ -26,8 +26,8 @@ Json result = parser.parseFromFile(jsonFile);
 
 ```java
 // Access structures easily
-JsonObject obj = result.asJsonObject();
-JsonArray arr = result.asJsonArray();
+JsonObject obj = result.toJsonObject();
+JsonArray arr = result.toJsonArray();
 ```
 ```java
 // Access values easily
@@ -43,7 +43,7 @@ String city = obj.getAsJsonObject("address").getAsString("city");
 // Work with arrays
 JsonArray scores = obj.getAsJsonArray("scores");
 for (Json score : scores) {
-    System.out.println((score.asJsonNumber()).getValue());
+    System.out.println((score.toJsonNumber()).getValue());
 }
 ```
 ```java
