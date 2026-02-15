@@ -38,7 +38,7 @@ class JsonLexer {
                 char character = (char) charAsInt;
 
                 if (insideString) {
-                    handleString(character, stringContent, reader, tokens); // If inside a string, handle escape characters and quotes explicitly
+                    handleString(character, stringContent, reader, tokens); // Handle escape characters and quotes explicitly
                 } else if (!isWhitespace(character)) {
                     tokeniseCharacter(character, tokens, reader); // Ignoring whitespace outside of strings, create appropriate tokens
                 }
@@ -97,8 +97,8 @@ class JsonLexer {
             case ']' -> tokens.add(Token.of(TokenType.ARRAY_CLOSER, character));
             case ':' -> tokens.add(Token.of(TokenType.COLON, character));
             case ',' -> tokens.add(Token.of(TokenType.COMMA, character));
-            case 't' -> handleBoolean(true, tokens, reader);
-            case 'f' -> handleBoolean(false, tokens, reader);
+            case 't' -> handleBoolean("true", tokens, reader);
+            case 'f' -> handleBoolean("false", tokens, reader);
             case 'n' -> handlePossibleNullLiteral(tokens, reader);
 
             default -> {
@@ -112,9 +112,7 @@ class JsonLexer {
         }
     }
 
-    private static void handleBoolean(Boolean value, List<Token> tokens, PushbackReader reader) throws IOException {
-        String expectedWord = Boolean.TRUE.equals(value) ? "true" : "false";
-
+    private static void handleBoolean(String expectedWord, List<Token> tokens, PushbackReader reader) throws IOException {
         char[] expected = new char[expectedWord.length() - 1];
         if (reader.read(expected) != expected.length) {
             throw new JsonSyntaxException(LEXER_INVALID_LITERAL.getMessage() + Arrays.toString(expected));
@@ -124,7 +122,7 @@ class JsonLexer {
                 throw new JsonSyntaxException(LEXER_INVALID_LITERAL.getMessage() + Arrays.toString(expected));
             }
         }
-        tokens.add(Token.of(TokenType.BOOLEAN, value));
+        tokens.add(Token.of(TokenType.BOOLEAN, Boolean.valueOf(expectedWord)));
     }
 
     private static void handlePossibleNullLiteral(List<Token> tokens, PushbackReader reader) throws IOException {
