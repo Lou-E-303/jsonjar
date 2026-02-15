@@ -97,9 +97,9 @@ class JsonLexer {
             case ']' -> tokens.add(Token.of(TokenType.ARRAY_CLOSER, character));
             case ':' -> tokens.add(Token.of(TokenType.COLON, character));
             case ',' -> tokens.add(Token.of(TokenType.COMMA, character));
-            case 't' -> handleBoolean("true", tokens, reader);
-            case 'f' -> handleBoolean("false", tokens, reader);
-            case 'n' -> handlePossibleNullLiteral(tokens, reader);
+            case 't' -> handleLiteral("true", TokenType.BOOLEAN, true, tokens, reader);
+            case 'f' -> handleLiteral("false", TokenType.BOOLEAN, false, tokens, reader);
+            case 'n' -> handleLiteral("null", TokenType.NULL, null, tokens, reader);
 
             default -> {
                 // Check for valid JSON starting character
@@ -112,25 +112,19 @@ class JsonLexer {
         }
     }
 
-    private static void handleBoolean(String expectedWord, List<Token> tokens, PushbackReader reader) throws IOException {
-        char[] expected = new char[expectedWord.length() - 1];
+    private static void handleLiteral(String expectedLiteral, TokenType tokenType, Object value, List<Token> tokens, PushbackReader reader) throws IOException {
+        char[] expected = new char[expectedLiteral.length() - 1];
+
         if (reader.read(expected) != expected.length) {
             throw new JsonSyntaxException(LEXER_INVALID_LITERAL.getMessage() + Arrays.toString(expected));
         }
-        for (int i = 1; i < expectedWord.length(); i++) {
-            if (expected[i - 1] != expectedWord.charAt(i)) {
+
+        for (int i = 1; i < expectedLiteral.length(); i++) {
+            if (expected[i - 1] != expectedLiteral.charAt(i)) {
                 throw new JsonSyntaxException(LEXER_INVALID_LITERAL.getMessage() + Arrays.toString(expected));
             }
         }
-        tokens.add(Token.of(TokenType.BOOLEAN, Boolean.valueOf(expectedWord)));
-    }
-
-    private static void handlePossibleNullLiteral(List<Token> tokens, PushbackReader reader) throws IOException {
-        char[] expected = new char[3];
-        if (reader.read(expected) != 3 || !(expected[0] == 'u' && expected[1] == 'l' && expected[2] == 'l')) {
-            throw new JsonSyntaxException(LEXER_INVALID_LITERAL.getMessage() + Arrays.toString(expected));
-        }
-        tokens.add(Token.of(TokenType.NULL, null));
+        tokens.add(Token.of(tokenType, value));
     }
 
     private void tokeniseNumber(PushbackReader reader, Character character, List<Token> tokens) throws IOException {
