@@ -55,8 +55,8 @@ public class JsonParser {
 
     private void processToken(State currentState, Token token) {
         switch (token.type()) {
-            case OBJECT_OPENER -> handleObjectOpener();
-            case ARRAY_OPENER -> handleArrayOpener();
+            case OBJECT_OPENER -> handleOpener(new JsonObject());
+            case ARRAY_OPENER -> handleOpener(new JsonArray());
             case CONTENT -> handleContent(currentState, token);
             case BOOLEAN -> handleBoolean(token);
             case NUMBER -> handleNumber(token);
@@ -68,16 +68,13 @@ public class JsonParser {
         }
     }
 
-    private void handleObjectOpener() {
-        JsonObject newObject = new JsonObject();
-        addJsonToCurrentContext(newObject);
-        jsonStack.push(newObject);
-    }
+    private void handleOpener(Json container) {
+        boolean isRootElement = jsonStack.isEmpty(); // Avoid double-pushing root elements
+        addJsonToCurrentContext(container);
 
-    private void handleArrayOpener() {
-        JsonArray newArray = new JsonArray();
-        addJsonToCurrentContext(newArray);
-        jsonStack.push(newArray);
+        if (!isRootElement) {
+            jsonStack.push(container);
+        }
     }
 
     private void handleContent(State currentState, Token token) {
