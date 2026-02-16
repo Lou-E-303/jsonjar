@@ -40,9 +40,7 @@ public class JsonParser {
 
             for (Token token : tokens) {
                 stateMachine.nextState(token.type());
-                State currentState = stateMachine.getCurrentState();
-
-                processToken(currentState, token);
+                processToken(stateMachine.getCurrentState(), token);
             }
 
             if (jsonStack.size() != 1) {
