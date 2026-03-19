@@ -50,23 +50,6 @@ public class JsonPrettyPrinter {
         output.append("}");
     }
 
-    private void appendEscapedString(String value) {
-        output.append("\"");
-        for (char c : value.toCharArray()) {
-            switch (c) {
-                case '"'  -> output.append("\\\"");
-                case '\\' -> output.append("\\\\");
-                case '\b' -> output.append("\\b");
-                case '\f' -> output.append("\\f");
-                case '\n' -> output.append("\\n");
-                case '\r' -> output.append("\\r");
-                case '\t' -> output.append("\\t");
-                default   -> output.append(c);
-            }
-        }
-        output.append("\"");
-    }
-
     private void handleJsonArray(JsonArray array, int currentIndentLevel) {
         ArrayList<Json> elements = array.getValue();
 
@@ -97,6 +80,23 @@ public class JsonPrettyPrinter {
     private void handleJsonString(JsonString string) {
         String value = string.getValue();
         appendEscapedString(value);
+    }
+
+    private void appendEscapedString(String value) {
+        output.append("\"");
+        for (char c : value.toCharArray()) {
+            switch (c) {
+                case '"'  -> output.append("\\\"");
+                case '\\' -> output.append("\\\\");
+                case '\b' -> output.append("\\b");
+                case '\f' -> output.append("\\f");
+                case '\n' -> output.append("\\n");
+                case '\r' -> output.append("\\r");
+                case '\t' -> output.append("\\t");
+                default   -> output.append(c);
+            }
+        }
+        output.append("\"");
     }
 
     private void handleJsonNumber(JsonNumber number) {
