@@ -32,9 +32,15 @@ public class JsonPrettyPrinter {
     }
 
     private void handleJsonObject(JsonObject object, int currentIndentLevel) {
+        Map<String, Json> topLevelValues = object.getValue();
+
+        if (topLevelValues.isEmpty()) {
+            output.append("{}");
+            return;
+        }
+
         output.append("{");
 
-        Map<String, Json> topLevelValues = object.getValue();
         for (Map.Entry<String, Json> entry : topLevelValues.entrySet()) {
             output.append("\n");
             output.append(INDENT.repeat(currentIndentLevel + 1));
