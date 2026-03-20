@@ -41,13 +41,15 @@ public class JsonPrettyPrinter {
 
         output.append("{");
 
-        for (Map.Entry<String, Json> entry : topLevelValues.entrySet()) {
+        Iterator<Map.Entry<String, Json>> iterator = topLevelValues.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Json> entry = iterator.next();
             output.append("\n");
             output.append(INDENT.repeat(currentIndentLevel + 1));
             appendEscapedString(entry.getKey());
             output.append(": ");
             formatJson(entry.getValue(), currentIndentLevel + 1);
-            if (!entry.equals(topLevelValues.entrySet().toArray()[topLevelValues.size() - 1])) {
+            if (iterator.hasNext()) {
                 output.append(",");
             } else {
                 output.append("\n").append(INDENT.repeat(currentIndentLevel));
@@ -66,7 +68,7 @@ public class JsonPrettyPrinter {
 
         output.append("[");
 
-        Iterator<Json> iterator = elements.iterator(); // Use iterator to check for last element
+        Iterator<Json> iterator = elements.iterator();
         while (iterator.hasNext()) {
             Json element = iterator.next();
             output.append("\n");
