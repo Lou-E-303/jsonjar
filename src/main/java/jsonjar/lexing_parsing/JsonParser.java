@@ -69,10 +69,9 @@ public class JsonParser {
     }
 
     private void handleOpener(Json container) {
-        boolean isRootElement = jsonStack.isEmpty(); // Avoid double-pushing root elements
         addJsonToCurrentContext(container);
 
-        if (!isRootElement) {
+        if (!jsonStack.isEmpty()) {
             jsonStack.push(container);
         }
     }
