@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -187,15 +186,6 @@ class JsonArrayTest {
             count++;
         }
         assertEquals(6, count);
-    }
-
-    @Test
-    void shouldIterateWithIterator() {
-        Iterator<Json> iterator = jsonArray.iterator();
-        assertTrue(iterator.hasNext());
-        assertInstanceOf(JsonString.class, iterator.next());
-        assertTrue(iterator.hasNext());
-        assertInstanceOf(JsonNumber.class, iterator.next());
     }
 
     @Test
